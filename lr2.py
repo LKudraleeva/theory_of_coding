@@ -119,7 +119,7 @@ def first_part():
     print('H:', h, sep='\n')
 
     # 2.3 - таблица синдромов
-    s = get_syndromes_first(h, n)
+    s = get_syndromes_first(h)
     print('Таблица синдромов:', s, sep='\n')
 
     # 2.4 - ввод однократной ошибки
