@@ -57,8 +57,8 @@ if __name__ == '__main__':
     print('d = ', distance(G)[0])
     print('t = ', distance(G)[1])
     v = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1])
-    e1 = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])  # found
-    # e1 = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])  # not found
+    # e1 = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])  # found
+    e1 = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])  # not found
 
     res = (v + e1) @ H % 2
     if np.any(res) > 0:
