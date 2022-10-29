@@ -69,7 +69,7 @@ def generate_x_second(n, k):
     x = np.delete(x, idx, axis=0)  # удаляем строки в которых меньше 4 единиц
     if x.shape[0] >= k:
         for c in itertools.combinations(range(0, x.shape[0], 1), k):
-            # добавить для всех случаев
+
             flag = True
             # проверка сумм двух строк
             for c_2 in itertools.combinations(c, 2):
