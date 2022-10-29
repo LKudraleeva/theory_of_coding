@@ -3,26 +3,26 @@ from matrix import distance
 import numpy as np
 
 
-def g_matrix(x, k):
+def g_matrix(x: np.ndarray, k: int):
     g = np.eye(k, dtype=int)
     g = np.append(g, x, axis=1)
     return g
 
 
-def h_matrix(x, n, k):
+def h_matrix(x: np.ndarray, n: int, k: int):
     h = np.copy(x)
     h = np.append(h, np.eye(n - k, dtype=int), axis=0)
     return h
 
 
-def get_syndromes_first(h):
+def get_syndromes_first(h: np.ndarray):
     syndromes = dict()
     for i in range(len(h)):
         syndromes[tuple(h[i])] = [i]
     return syndromes
 
 
-def get_syndromes_second(h, n):
+def get_syndromes_second(h: np.ndarray, n: int):
     syndromes = dict()
     errors = np.eye(n, dtype=int)
     for i in range(len(h)):
@@ -35,18 +35,18 @@ def get_syndromes_second(h, n):
     return syndromes
 
 
-def find_index(syndromes, e):
+def find_index(syndromes: dict, e: np.ndarray):
     return syndromes.get(tuple(e), [])
 
 
-def encoding(word, idx_errors):
+def encoding(word: np.ndarray, idx_errors: list):
     for e in idx_errors:
         word[e] += 1
         word[e] %= 2
     return word
 
 
-def int_to_bin_word_array(size):
+def int_to_bin_word_array(size: int):
     bin_words = []
     for i in range(0, 2 ** size):
         bin_str = format(i, 'b')
@@ -58,7 +58,7 @@ def int_to_bin_word_array(size):
     return np.asarray(bin_words)
 
 
-def generate_x_second(n, k):
+def generate_x_second(n: int, k: int):
     d = 5
     x = int_to_bin_word_array(n - k)
     matrix = np.zeros((k, n - k), dtype=int)
@@ -69,7 +69,6 @@ def generate_x_second(n, k):
     x = np.delete(x, idx, axis=0)  # удаляем строки в которых меньше 4 единиц
     if x.shape[0] >= k:
         for c in itertools.combinations(range(0, x.shape[0], 1), k):
-
             flag = True
             # проверка сумм двух строк
             for c_2 in itertools.combinations(c, 2):
@@ -157,6 +156,7 @@ def second_part():
     n = 13
     k = 4
     x_second = generate_x_second(n, k)
+    # проверка существования матрицы
     if np.array_equal(np.zeros((k, n - k), dtype=int), x_second):
         print('Матрицы не существует')
     else:
